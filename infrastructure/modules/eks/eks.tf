@@ -21,17 +21,14 @@ module "my-cluster" {
   source              = "terraform-aws-modules/eks/aws"
   cluster_name        = "my-cluster"
   cluster_version     = "1.14"
-  subnets             = module.vpc.private_subnets
+  subnets             = "${var.PRIVATE_SUBNETS}"
+  vpc_id              = "${var.VPC_ID}"
   security_group_ids  = [aws_security_group.demo-cluster.id]
-  vpc_id          = module.vpc.vpc_id
-
+  
   tags = {
     Name         = "my-cluster-${var.ENV}"
     Environmnent = var.ENV
   }
 
-  depends_on = [
-    aws_iam_role_policy_attachment.demo-cluster-AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.demo-cluster-AmazonEKSServicePolicy,
-  ]
+  
 }

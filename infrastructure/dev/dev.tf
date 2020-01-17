@@ -15,6 +15,6 @@ module "eks" {
   source         = "../modules/eks"
   ENV            = "dev"
   VPC_ID         = module.main-vpc.vpc_id
-  PUBLIC_SUBNETS = module.main-vpc.private_subnets
+  PRIVATE_SUBNETS = module.main-vpc.private_subnets
 }
 
