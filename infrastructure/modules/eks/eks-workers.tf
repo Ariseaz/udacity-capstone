@@ -21,7 +21,7 @@ resource "aws_launch_configuration" "demo" {
   associate_public_ip_address = true
   iam_instance_profile = aws_iam_instance_profile.demo-node.name
   image_id = data.aws_ami.eks-worker.id
-  instance_type = "t2.large"
+  instance_type = "t2.micro"
   name_prefix = "terraform-eks-demo"
   security_groups = [aws_security_group.demo-node.id]
   user_data_base64 = base64encode(local.demo-node-userdata)
@@ -38,7 +38,7 @@ resource "aws_autoscaling_group" "demo" {
   min_size = 1
   name = "terraform-eks-demo"
   
-  vpc_zone_identifier = module.vpc.public_subnets
+  vpc_zone_identifier = module.main-vpc.public_subnets
 
   tag {
     key = "Name"

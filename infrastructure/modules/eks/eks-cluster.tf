@@ -1,4 +1,6 @@
-resource "aws_eks_cluster" "demo" {
+module "eks" {
+
+  source       = "../.."
   name     = var.cluster-name
   role_arn = aws_iam_role.demo-cluster.arn
 
