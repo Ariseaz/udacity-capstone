@@ -4,6 +4,11 @@ variable "ENV" {
 variable "AWS_REGION" {
 }
 
+variable "cluster-name" {
+  default = "terraform-eks-demo"
+  type    = string
+}
+
 module "main-vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "2.6.0"
@@ -22,6 +27,7 @@ module "main-vpc" {
   tags = {
     Name        = "my-cluster-${var.ENV}"
     Environment = var.ENV
+    "kubernetes.io/cluster/${var.cluster-name}" = "shared"
   }
 }
 

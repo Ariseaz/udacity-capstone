@@ -4,7 +4,7 @@ resource "aws_eks_cluster" "demo" {
 
   vpc_config {
     security_group_ids = [aws_security_group.demo-cluster.id]
-    subnet_ids = module.vpc.public_subnets
+    subnet_ids = var.PUBLIC_SUBNETS
     vpc_id     = var.VPC_ID
   }
 
