@@ -22,7 +22,6 @@ module "main-vpc" {
   tags = {
     Name        = "my-cluster-${var.ENV}"
     Environment = var.ENV
-    "kubernetes.io/cluster/${var.cluster-name}" = "shared"
   }
 }
 
