@@ -1,5 +1,5 @@
-module "main-vpc" {
-  source     = "../modules/vpc"
+module "eks" {
+  source     = "../modules/eks"
   ENV        = "dev"
   AWS_REGION = var.AWS_REGION
 }
