@@ -13,6 +13,7 @@ module "instances" {
 
 module "eks" {
   source         = "../modules/eks"
-  ENV            = "dev"
+  VPC_ID         = module.main-vpc.vpc_id
+  PUBLIC_SUBNETS = module.main-vpc.public_subnets
 }
 
