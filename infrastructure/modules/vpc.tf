@@ -1,14 +1,3 @@
-variable "ENV" {
-}
-
-variable "AWS_REGION" {
-}
-
-variable "cluster-name" {
-  default = "terraform-eks-demo"
-  type    = string
-}
-
 module "main-vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "2.6.0"
