@@ -3,7 +3,7 @@ variable "AWS_REGION" {
 }
 
 variable "cluster-name" {
-  default = "terraform-eks-azeez"
+  default = "terraform-eks-demo"
   type    = string
 }
  
