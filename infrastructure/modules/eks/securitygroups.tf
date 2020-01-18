@@ -1,7 +1,7 @@
 resource "aws_security_group" "demo-cluster" {
   name        = "terraform-eks-demo-cluster"
   description = "Cluster communication with worker nodes"
-  vpc_id      = var.VPC_ID
+  vpc_id      = module.main-vpc.vpc_id
 
   egress {
     from_port   = 0
