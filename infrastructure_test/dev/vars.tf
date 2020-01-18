@@ -6,4 +6,9 @@ variable "cluster-name" {
   default = "terraform-eks-demo"
   type    = string
 }
+
+variable "ENV" {
+  default = "dev"
+  type    = string
+}
  
