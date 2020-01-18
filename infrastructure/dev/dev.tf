@@ -12,9 +12,6 @@ module "instances" {
 }
 
 module "eks" {
-  source         = "../modules/eks"
-  VPC_ID         = module.main-vpc.vpc_id
-  PUBLIC_SUBNETS = module.main-vpc.public_subnets
-  
+  source         = "../modules/eks" 
 }
 
