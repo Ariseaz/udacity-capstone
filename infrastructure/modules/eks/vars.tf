@@ -3,3 +3,10 @@ variable "cluster-name" {
   type    = string
 }
 
+variable "VPC_ID" {
+}
+
+variable "PUBLIC_SUBNETS" {
+  type = list
+}
+
