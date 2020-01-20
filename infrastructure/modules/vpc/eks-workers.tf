@@ -42,7 +42,7 @@ resource "aws_autoscaling_group" "demo" {
 
   tag {
     key = "Name"
-    value = "terraform-eks-demo"
+    value = "terraform-eks-autoscaling"
     propagate_at_launch = true
   }
 
