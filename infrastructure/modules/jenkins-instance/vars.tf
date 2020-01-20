@@ -35,3 +35,12 @@ variable "APP_INSTANCE_COUNT" {
   default = "0"
 }
 
+variable "ENV" {
+}
+
+variable "PUBLIC_SUBNETS" {
+  type = list
+}
+
+variable "VPC_ID" {
+}
