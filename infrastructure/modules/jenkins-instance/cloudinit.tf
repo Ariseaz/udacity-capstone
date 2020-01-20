@@ -1,5 +1,5 @@
 data "template_file" "jenkins-init" {
-  template = file("scripts/jenkins-init.sh")
+  template = file("../modules/jenkins-instance/scripts/jenkins-init.sh")
   vars = {
     DEVICE            = var.INSTANCE_DEVICE_NAME
     JENKINS_VERSION   = var.JENKINS_VERSION
