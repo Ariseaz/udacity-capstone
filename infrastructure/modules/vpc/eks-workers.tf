@@ -38,7 +38,7 @@ resource "aws_autoscaling_group" "demo" {
   min_size = 2
   name = "terraform-eks-demo"
   
-  vpc_zone_identifier = module.main-vpc.public_subnets
+  vpc_zone_identifier = module.main-vpc.private_subnets
 
   tag {
     key = "Name"

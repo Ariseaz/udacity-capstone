@@ -1,6 +1,6 @@
 resource "aws_instance" "jenkins-instance" {
   ami           = var.AMIS[var.AWS_REGION]
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
 
   # the VPC subnet
   subnet_id = element(var.PUBLIC_SUBNETS, 0)
@@ -39,7 +39,7 @@ resource "aws_volume_attachment" "jenkins-data-attachment" {
 resource "aws_instance" "app-instance" {
   count         = var.APP_INSTANCE_COUNT
   ami           = var.APP_INSTANCE_AMI
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
 
   # the VPC subnet
   subnet_id = element(var.PUBLIC_SUBNETS, 0)
