@@ -5,7 +5,7 @@ variable "AWS_REGION" {
 }
 
 variable "cluster-name" {
-  default = "terraform-eks-$ENV"
+  default = "terraform-eks-demo"
   type    = string
 }
  
