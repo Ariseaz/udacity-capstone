@@ -14,4 +14,9 @@ variable "PATH_TO_PRIVATE_KEY" {
 variable "PATH_TO_PUBLIC_KEY" {
   default = "mykey.pub"
 }
+variable "KEY_NAME" {
+  default = aws_key_pair.mykeypair.key_name
+}
+
+
  
