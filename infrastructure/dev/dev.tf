@@ -9,5 +9,4 @@ module "jenkins" {
   ENV            = "dev"
   VPC_ID         = module.main-vpc.vpc_id
   PUBLIC_SUBNETS = module.main-vpc.public_subnets
-  key_name = var.KEY_NAME
 }
