@@ -3,7 +3,7 @@ resource "aws_instance" "jenkins-instance-2" {
   instance_type = "t2.micro"
 
   # the VPC subnet
-  subnet_id = aws_subnet.main-public-1.id
+  subnet_id = element(var.PUBLIC_SUBNETS, 0)
 
   # the security group
   vpc_security_group_ids = [aws_security_group.jenkins-securitygroup.id]
