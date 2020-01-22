@@ -2,7 +2,6 @@ data "template_file" "jenkins-init" {
   template = file("../modules/jenkins-instance/scripts/jenkins-init.sh")
   vars = {
     DEVICE            = var.INSTANCE_DEVICE_NAME
-    JENKINS_VERSION   = var.JENKINS_VERSION
     TERRAFORM_VERSION = var.TERRAFORM_VERSION
   }
 }
@@ -21,7 +20,6 @@ data "template_file" "jenkins-init-2" {
   template = file("../modules/jenkins-instance/scripts/jenkins-init-2.sh")
   vars = {
     DEVICE            = var.INSTANCE_DEVICE_NAME
-    JENKINS_VERSION   = var.JENKINS_VERSION
     TERRAFORM_VERSION = var.TERRAFORM_VERSION
   }
 }
