@@ -25,11 +25,11 @@ echo '/dev/data/volume1 /var/lib/jenkins ext4 defaults 0 0' >> /etc/fstab
 mount /var/lib/jenkins
 
 # install nginx for reverse proxy
-sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum install -y epel-release
-sudo yum install nginx -y
-sudo systemctl start nginx
-sudo systemctl enable nginx
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install -y epel-release
+yum install nginx -y
+systemctl start nginx
+systemctl enable nginx
 
 # install dependencies
 yum install -y python3
