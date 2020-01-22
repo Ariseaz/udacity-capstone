@@ -34,16 +34,16 @@ systemctl enable nginx
 # install dependencies
 yum install -y python3
 yum install java-1.8* -y
-sudo dnf search wget
-sudo dnf install wget
+dnf search wget
+dnf install wget
 
 
 # jenkins repository
-sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-sudo yum install -y jenkins unzip git
-sudo systemctl start jenkins
-sudo systemctl enable jenkins
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+yum install -y jenkins unzip git
+systemctl start jenkins
+systemctl enable jenkins
 yum update
 
 # install pip

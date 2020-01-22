@@ -25,10 +25,10 @@ echo '/dev/data/volume1 /var/lib/jenkins ext4 defaults 0 0' >> /etc/fstab
 mount /var/lib/jenkins
 
 # install nginx for reverse proxy
-sudo wget http://nginx.org/keys/nginx_signing.key
-sudo apt-key add nginx_signing.key
-sudo apt-get update
-sudo apt-get install nginx
+wget http://nginx.org/keys/nginx_signing.key
+apt-key add nginx_signing.key
+apt-get update -y
+apt-get install nginx -y
 
 # jenkins repository
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
