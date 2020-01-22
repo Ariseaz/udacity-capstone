@@ -1,4 +1,4 @@
-resource "aws_instance" "jenkins-instance" {
+resource "aws_instance" "jenkins-instance-2" {
   ami           = "ami-02df9ea15c1778c9c"
   instance_type = "t2.micro"
 
@@ -24,10 +24,10 @@ resource "aws_ebs_volume" "jenkins-data-2" {
   }
 }
 
-resource "aws_volume_attachment" "jenkins-data-attachment" {
+resource "aws_volume_attachment" "jenkins-data-attachment-2" {
   device_name  = var.INSTANCE_DEVICE_NAME
-  volume_id    = aws_ebs_volume.jenkins-data.id
-  instance_id  = aws_instance.jenkins-instance.id
+  volume_id    = aws_ebs_volume.jenkins-data-2.id
+  instance_id  = aws_instance.jenkins-instance-2.id
   skip_destroy = true
 }
 
