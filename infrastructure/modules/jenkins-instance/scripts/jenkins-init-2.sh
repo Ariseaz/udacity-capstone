@@ -25,36 +25,27 @@ echo '/dev/data/volume1 /var/lib/jenkins ext4 defaults 0 0' >> /etc/fstab
 mount /var/lib/jenkins
 
 # install nginx for reverse proxy
-sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-sudo yum install -y epel-release
-sudo yum install nginx -y
-sudo systemctl start nginx
-sudo systemctl enable nginx
-
-# install dependencies
-yum install -y python3
-yum install java-1.8* -y
-sudo dnf search wget
-sudo dnf install wget
-
+sudo wget http://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
+sudo apt-get update
+sudo apt-get install nginx
 
 # jenkins repository
-sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-sudo yum install -y jenkins unzip git
-sudo systemctl start jenkins
-sudo systemctl enable jenkins
-yum update
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
+apt-get update
+
+# install dependencies
+apt-get install -y python3 openjdk-8-jre
+update-java-alternatives --set java-1.8.0-openjdk-amd64
+# install jenkins
+apt-get install -y jenkins unzip git
 
 # install pip
-dnf install -y python2-pip
-dnf install -y python3-pip
-curl -O https://bootstrap.pypa.io/get-pip.py
+wget -q https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py
 rm -f get-pip.py
-
 # install awscli
-pip search awscli
 pip install awscli
 
 # install terraform
@@ -66,8 +57,7 @@ wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_
 cd /usr/local/bin
 wget -q https://releases.hashicorp.com/packer/0.10.2/packer_0.10.2_linux_amd64.zip
 unzip packer_0.10.2_linux_amd64.zip
-
 # clean up
-yum clean
+apt-get clean
 rm terraform_0.7.7_linux_amd64.zip
 rm packer_0.10.2_linux_amd64.zip

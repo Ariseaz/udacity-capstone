@@ -15,16 +15,12 @@ variable "AMIS" {
   default = {
     us-east-1 = "ami-00a208c7cdba991ea"
     us-west-2 = "ami-0a7d051a1c4b54f65"
-    eu-west-1 = "ami-02df9ea15c1778c9c"
+    eu-west-1 = "ami-04facb3ed127a2eb6"
   }
 }
 
 variable "INSTANCE_DEVICE_NAME" {
   default = "/dev/xvdh"
-}
-
-variable "JENKINS_VERSION" {
-  default = "2.204.1"
 }
 
 variable "TERRAFORM_VERSION" {
