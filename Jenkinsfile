@@ -11,7 +11,7 @@ pipeline {
         sh 'make build'
       }
     }
-    stage('docker build/push') {
+    stages('docker build/push') {
         node {
           def commit_id
           stage('Preparation') {
