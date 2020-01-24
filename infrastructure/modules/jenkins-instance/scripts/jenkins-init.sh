@@ -42,6 +42,7 @@ dnf install wget -y
 wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
 rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
 yum install -y jenkins unzip git
+usermod -a -G root jenkins
 systemctl start jenkins.service
 systemctl enable jenkins.service
 yum update -y

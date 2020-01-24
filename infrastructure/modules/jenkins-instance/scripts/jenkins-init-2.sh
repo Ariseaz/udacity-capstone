@@ -29,6 +29,9 @@ wget http://nginx.org/keys/nginx_signing.key
 apt-key add nginx_signing.key
 apt-get update -y
 apt-get install nginx -y
+systemctl start nginx
+systemctl enable nginx
+
 
 # jenkins repository
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
@@ -40,6 +43,9 @@ apt-get install -y python3 openjdk-8-jre
 update-java-alternatives --set java-1.8.0-openjdk-amd64
 # install jenkins
 apt-get install -y jenkins unzip git
+usermod -a -G root jenkins
+systemctl start jenkins.service
+systemctl enable jenkins.service
 
 # install pip
 wget -q https://bootstrap.pypa.io/get-pip.py
@@ -52,6 +58,11 @@ pip install awscli
 wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
 && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \
 && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+
+# make install
+apt install make
+apt install make-guile -y
+
 
 # install packer
 cd /usr/local/bin
