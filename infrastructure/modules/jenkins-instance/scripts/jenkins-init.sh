@@ -42,9 +42,9 @@ dnf install wget -y
 wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
 rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
 yum install -y jenkins unzip git
-systemctl start jenkins
-systemctl enable jenkins
-yum update
+systemctl start jenkins.service
+systemctl enable jenkins.service
+yum update -y
 
 # install pip
 dnf install -y python2-pip

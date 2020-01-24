@@ -33,7 +33,7 @@ apt-get install nginx -y
 # jenkins repository
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
-apt-get update
+apt-get update -y
 
 # install dependencies
 apt-get install -y python3 openjdk-8-jre
