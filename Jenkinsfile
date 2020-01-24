@@ -1,5 +1,6 @@
 pipeline {
   agent any
+  def commit_id
   stages {
     stage('Preparation') {
      checkout scm
