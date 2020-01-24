@@ -11,21 +11,21 @@ pipeline {
         sh 'make build'
       }
     }
-    stages('docker build/push') {
+    stesps('docker build/push') {
         node {
           def commit_id
-          stage('Preparation') {
+          step('Preparation') {
             checkout scm
             sh "git rev-parse --short HEAD > .git/commit-id"                        
             commit_id = readFile('.git/commit-id').trim()
           }
-          stage('test') {
+          step('test') {
             nodejs(nodeJSInstallationName: 'nodejs') {
               sh 'npm install --only=dev'
               sh 'npm test'
             }
           }
-          stage('docker build/push') {
+          step('docker build/push') {
             docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
               def app = docker.build("adenijiazeez/docker-nodejs-demo:${commit_id}", '.').push()
             }
