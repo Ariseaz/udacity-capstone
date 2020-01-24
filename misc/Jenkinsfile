@@ -5,25 +5,6 @@ node {
      sh "git rev-parse --short HEAD > .git/commit-id"                        
      commit_id = readFile('.git/commit-id').trim()
    }
-
-    stage('setup') {
-      steps {
-        sh 'make setup'
-      }
-    }
-    
-   stage('install-requirements') {
-      steps {
-        sh 'make install'
-      }
-    }
-  
-    stage('Lint') {
-      steps {
-        sh 'make lint'
-      }
-    }
-
    stage('test') {
      nodejs(nodeJSInstallationName: 'nodejs') {
        sh 'npm install --only=dev'
