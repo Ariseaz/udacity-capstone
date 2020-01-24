@@ -13,6 +13,12 @@ resource "aws_instance" "jenkins-instance-2" {
 
   # user data
   user_data = data.template_cloudinit_config.cloudinit-jenkins-2.rendered
+
+  tags = {
+    Name         = "jenkins-ubuntu-${var.ENV}"
+    Environmnent = var.ENV
+  }
+
 }
 
 resource "aws_ebs_volume" "jenkins-data-2" {

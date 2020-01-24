@@ -15,7 +15,7 @@ resource "aws_instance" "jenkins-instance" {
   user_data = data.template_cloudinit_config.cloudinit-jenkins.rendered
 
   tags = {
-    Name         = "jenkins-instance-${var.ENV}"
+    Name         = "jenkins-redhat-${var.ENV}"
     Environmnent = var.ENV
   }
 }

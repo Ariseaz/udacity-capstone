@@ -35,7 +35,7 @@ systemctl enable nginx
 yum install -y python3
 yum install java-1.8* -y
 dnf search wget
-dnf install wget
+dnf install wget -y
 
 
 # jenkins repository
