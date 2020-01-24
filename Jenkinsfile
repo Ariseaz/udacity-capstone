@@ -8,7 +8,7 @@ node {
 
     stage('setup') {
       steps {
-        sh 'make install'
+        sh 'make setup'
       }
     }
     
