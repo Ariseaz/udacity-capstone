@@ -13,8 +13,8 @@ pipeline {
     }
     
     stage('Login to dockerhub') {
-      steps {
-        withCredentials('dockerhub') 
+      docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+        sh 'docker login'
       }
     }
 
