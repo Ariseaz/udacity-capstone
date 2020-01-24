@@ -1,12 +1,6 @@
 pipeline {
-  agent node
-  def commit_id
+  agent any
   stages {
-    stage('Preparation') {
-     checkout scm
-     sh "git rev-parse --short HEAD > .git/commit-id"                        
-     commit_id = readFile('.git/commit-id').trim()
-   }
     stage('Lint') {
       steps {
         sh 'make lint'
@@ -17,18 +11,11 @@ pipeline {
         sh 'make build'
       }
     }
-    stage('Login to dockerhub') {
-      steps {
-        withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerhubpwd')]) {
-          sh 'docker login -u pmbrull -p ${dockerhubpwd}'
-        }
-      }
-    }
-    stage('Upload Image') {
-      steps {
-        sh 'make upload'
-      }
-    }
+    stage('docker build/push') {
+     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+       def app = docker.build("adenijiazeez/docker-nodejs-demo:${commit_id}", '.').push()
+     }
+   }
     stage('Deploy Kubernetes') {
       steps {
         sh 'kubectl apply -f ./kubernetes'
