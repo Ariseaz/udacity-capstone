@@ -11,7 +11,7 @@ pipeline {
         sh 'make build'
       }
     }
-    stesps('docker build/push') {
+    steps('docker build/push') {
         node {
           def commit_id
           step('Preparation') {
