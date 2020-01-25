@@ -49,8 +49,28 @@ systemctl enable jenkins.service
 
 # install pip
 wget -q https://bootstrap.pypa.io/get-pip.py
-python3 get-pip.py
-rm -f get-pip.py
+apt install python-pip
+pip install --upgrade pip
+pip install pylint
+
+# Create python virtualenv & source it
+# source ~/.devops/bin/activate
+apt-get install python3-venv -y
+python3 -m venv ~/.devops
+source ~/.devops/bin/activate
+
+# install docker
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-get update
+apt list --upgradable
+sudo apt-get install -y docker-ce
+usermod -aG docker ubuntu
+usermod -aG docker ${USER}
+docker pull hadolint/hadolint
+
+
 # install awscli
 pip install awscli
 
