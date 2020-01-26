@@ -27,7 +27,6 @@ node {
       echo 'Deploying to CLUSTER...'
       dir ('./eks') {
         withAWS(credentials: 'aws-credentials', region: 'eu-west-1') {
-            sh "aws eks --region eu-west-1 update-kubeconfig --name terraform-eks-demo"
             sh "kubectl apply -f eks/config-map-aws-auth.yaml"
             sh "kubectl get nodes"
             sh "kubectl run nodeapp --image=adenijiazeez/docker-nodejs-demo:latest --port=3000"
