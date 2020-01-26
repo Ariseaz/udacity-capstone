@@ -12,7 +12,7 @@ node {
      }
    }
 
-    stage('Lint HTML') {
+    stage('Lint Dockerfile') {
       steps {
           sh 'hadolint Dockerfile'
       }
