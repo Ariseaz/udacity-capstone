@@ -11,6 +11,13 @@ node {
        sh 'npm test'
      }
    }
+
+    stage('Lint HTML') {
+      steps {
+          sh 'hadolint Dockerfile'
+      }
+    }
+
    stage('docker build/push') {
      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
        def app = docker.build("adenijiazeez/docker-nodejs-demo:${commit_id}", '.').push()
