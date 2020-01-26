@@ -14,7 +14,9 @@ node {
 
     stage('Lint Dockerfile') {
       steps {
-          sh 'docker run --rm -i hadolint/hadolint < Dockerfile'
+          sh 'hadolint <Dockerfile>
+              hadolint --ignore DL3003 --ignore DL3006 <Dockerfile> # exclude specific rules
+              hadolint --trusted-registry my-company.com:500 <Dockerfile> # Warn when using untrusted FROM images'
       }
     }
 
