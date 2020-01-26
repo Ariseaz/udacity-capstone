@@ -91,12 +91,23 @@ wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_
 apt install make
 apt install make-guile -y
 
-
 # install packer
 cd /usr/local/bin
 wget -q https://releases.hashicorp.com/packer/0.10.2/packer_0.10.2_linux_amd64.zip
 unzip packer_0.10.2_linux_amd64.zip
+
+# install kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin
+
+# install heptio-authenticator-aws
+wget https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64
+chmod +x heptio-authenticator-aws_0.3.0_linux_amd64
+sudo mv heptio-authenticator-aws_0.3.0_linux_amd64 /usr/local/bin/heptio-authenticator-aws
+
 # clean up
 apt-get clean
 rm terraform_0.7.7_linux_amd64.zip
 rm packer_0.10.2_linux_amd64.zip
+
