@@ -12,21 +12,12 @@ node {
      }
    }
 
-    stage ("lint dockerfile") {
-    agent {
-        docker {
-            image 'hadolint/hadolint:latest-debian'
-        }
+    stage('Lint Dockerfile') {
+      steps {
+          sh 'docker run --rm -i hadolint/hadolint < Dockerfile'
+      }
     }
-    steps {
-        sh 'hadolint dockerfiles/* | tee -a hadolint_lint.txt'
-    }
-    post {
-        always {
-            archiveArtifacts 'hadolint_lint.txt'
-        }
-    }
-}
+
    stage('docker build/push') {
      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
        def app = docker.build("adenijiazeez/docker-nodejs-demo:${commit_id}", '.').push()
