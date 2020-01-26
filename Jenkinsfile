@@ -14,7 +14,7 @@ node {
 
    stage ("lint dockerfilessss") {
         echo 'Linting...'
-      sh 'hadolint Dockerfile'
+      sh 'dockerlint Dockerfile'
   }
 
 
