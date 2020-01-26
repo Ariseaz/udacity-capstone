@@ -19,11 +19,11 @@ node {
         }
     }
     steps {
-        sh 'hadolint Dockerfile/* | tee -a hadolint_lint.txt'
+        sh 'docker run -i hadolint/hadolint < Dockerfile'
     }
     post {
         always {
-            archiveArtifacts 'hadolint_lint.txt'
+            echo 'Lint passed'
         }
     }
   }
