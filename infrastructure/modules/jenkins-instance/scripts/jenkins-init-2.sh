@@ -67,7 +67,6 @@ apt-get update
 apt list --upgradable
 sudo apt-get install -y docker-ce
 usermod -aG docker ubuntu
-usermod -aG docker ${USER}
 docker pull hadolint/hadolint
 usermod -a -G docker jenkins
 systemctl restart jenkins
