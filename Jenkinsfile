@@ -12,11 +12,21 @@ node {
      }
    }
 
-    stage('Lint Dockerfile') {
-      steps {
-          sh 'docker run --rm -i hadolint/hadolint < Dockerfile'
-      }
+    stage ("lint dockerfile") {
+    agent {
+        docker {
+            image 'hadolint/hadolint:latest-debian'
+        }
     }
+    steps {
+        sh 'hadolint dockerfiles/* | tee -a hadolint_lint.txt'
+    }
+    post {
+        always {
+            archiveArtifacts 'hadolint_lint.txt'
+        }
+    }
+  }
 
    stage('docker build/push') {
      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
