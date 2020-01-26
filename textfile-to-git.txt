@@ -1,0 +1,11 @@
+GIThub Repo
+
+https://github.com/Ariseaz/udacity-capstone
+
+https://github.com/Ariseaz/udacity-capstone.git
+
+
+Loadbalancer arn:
+
+ a71f1ab2a405e11ea9237027afecc5ae-719184406.eu-west-1.elb.amazonaws.com
+
