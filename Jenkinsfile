@@ -12,6 +12,12 @@ node {
      }
    }
 
+   stage ("lint dockerfilessss") {
+        echo 'Linting...'
+      sh 'hadolint Dockerfile'
+  }
+
+
     stage ("lint dockerfile") {
     agent {
         docker {
