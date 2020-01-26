@@ -1,3 +1,3 @@
-output "jenkins-instance-ip" {
-  value = "${modules.main-vpc.jenkins-ip}"
+output "kubeconfig" {
+  value = "${module.main-vpc.kubeconfig}"
 }
