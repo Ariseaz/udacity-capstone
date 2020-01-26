@@ -12,21 +12,9 @@ node {
      }
    }
 
-   stage ("lint dockerfilessss") {
+   stage ("lint Dockerfile") {
         echo 'Linting...'
       sh 'dockerlint Dockerfile'
-  }
-
-
-    stage ("lint dockerfile") {
-    agent {
-        docker {
-            image 'hadolint/hadolint'
-        }
-    }
-    steps {
-        sh 'docker run -i hadolint/hadolint < Dockerfile'
-    }
   }
 
    stage('docker build/push') {

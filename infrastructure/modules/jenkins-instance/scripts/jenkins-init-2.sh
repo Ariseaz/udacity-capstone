@@ -73,6 +73,11 @@ usermod -a -G docker jenkins
 systemctl restart jenkins
 systemctl restart docker
 
+# install node
+curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+apt-get install nodejs
+npm install -g dockerlint
+
 
 
 # install awscli
