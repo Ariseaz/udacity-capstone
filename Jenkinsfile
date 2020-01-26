@@ -12,14 +12,21 @@ node {
      }
    }
 
-    stage('Lint Dockerfile') {
-      steps {
-          sh 'hadolint <Dockerfile>
-              hadolint --ignore DL3003 --ignore DL3006 <Dockerfile> # exclude specific rules
-              hadolint --trusted-registry my-company.com:500 <Dockerfile> # Warn when using untrusted FROM images'
-      }
+    stage ("lint dockerfile") {
+    agent {
+        docker {
+            image 'hadolint/hadolint:latest-debian'
+        }
     }
-
+    steps {
+        sh 'hadolint dockerfiles/* | tee -a hadolint_lint.txt'
+    }
+    post {
+        always {
+            archiveArtifacts 'hadolint_lint.txt'
+        }
+    }
+}
    stage('docker build/push') {
      docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
        def app = docker.build("adenijiazeez/docker-nodejs-demo:${commit_id}", '.').push()
