@@ -2,7 +2,7 @@ output "kubeconfig" {
   value = "${module.main-vpc.kubeconfig}"
 }
 
-output "kubeconfig" {
+output "config-map-aws-auth" {
   value = "${module.main-vpc.config-map-aws-auth}"
 }
 
