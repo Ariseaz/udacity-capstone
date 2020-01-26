@@ -20,10 +20,27 @@ pro:    _Production environment_
 
 Switch to appropriate directory for your environment
 ```
-cd dev
+cd infrastructure/dev/
 terraform init
 terraform apply
 ```
-The environment will spin up
+**The environment will spin up**
 
 Get output details for login
+
+## Configure kubectl
+```
+terraform output kubeconfig # save output in ~/.kube/config
+```
+***terraform output kubeconfig > ~/.kube/config***
+
+```
+terraform output config-map-aws-auth > config-map-aws-auth.yaml
+```
+```
+aws eks --region <region> update-kubeconfig --name terraform-eks-demo
+```
+
+kubectl apply -f config-map-aws-auth.yaml
+
+
