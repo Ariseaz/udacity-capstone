@@ -15,16 +15,11 @@ node {
     stage ("lint dockerfile") {
     agent {
         docker {
-            image 'hadolint/hadolint:latest-debian'
+            image 'hadolint/hadolint'
         }
     }
     steps {
         sh 'docker run -i hadolint/hadolint < Dockerfile'
-    }
-    post {
-        always {
-            echo 'Lint passed'
-        }
     }
   }
 
