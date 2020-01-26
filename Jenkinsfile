@@ -25,7 +25,7 @@ node {
 
    stage('Deploying') {
       echo 'Deploying to CLUSTER...'
-      dir ('./eks') {
+      dir ('./') {
         withAWS(credentials: 'aws-credentials', region: 'eu-west-1') {
             sh "kubectl apply -f eks/config-map-aws-auth.yaml"
             sh "kubectl get nodes"
