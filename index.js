@@ -1,7 +1,12 @@
 var express = require('express');
 var app = express();
 
-app.get('/', function (req, res) {
+app.use(express.static(__dirname + '/static'));
+app.set('views', __dirname + '/static/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.get('/index.html', function (req, res) {
   res.render('./static/index.html');
 });
 
