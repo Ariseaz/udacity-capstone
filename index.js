@@ -1,18 +1,13 @@
-var express = require('express');
-var app = express();
+var http = require('http'),
+    fs = require('fs');
 
-app.use(express.static(__dirname + '/static'));
-app.set('views', __dirname + '/static/views');
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
-
-app.get('/index.html', function (req, res) {
-  res.render('./static/index.html');
-});
-
-var server = app.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
+fs.readFile('./static/index.html', function (err, html) {
+    if (err) {
+        throw err; 
+    }       
+    http.createServer(function(request, response) {  
+        response.writeHeader(200, {"Content-Type": "text/html"});  
+        response.write(html);  
+        response.end();  
+    }).listen(3000);
 });
