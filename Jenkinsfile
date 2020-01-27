@@ -29,7 +29,7 @@ node {
         withAWS(credentials: 'aws-credentials', region: 'eu-west-1') {
             sh "kubectl apply -f eks/config-map-aws-auth.yaml"
             sh "kubectl get nodes"
-            sh "kubectl run nodeapp --image=adenijiazeez/docker-nodejs-demo:latest --port=3000"
+            sh "kubectl run nodeapp --image=adenijiazeez/docker-nodejs-demo:${commit_id} --port=3000"
             sh "kubectl get deployments"
             sh "kubectl get pods"
             sh "kubectl expose deployment nodeapp --type=LoadBalancer"
